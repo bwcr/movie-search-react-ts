@@ -16,7 +16,7 @@ const Search = ({ initialValues = "" }: { initialValues?: string }) => {
     e.preventDefault();
     if (search.trim() === "") return;
     if (search === initialValues) return;
-    router.push(`/search/${search}`, undefined, { shallow: true });
+    router.push(`/search/${search}`);
   };
 
   return (

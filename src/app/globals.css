@@ -26,3 +26,20 @@ body {
     rgb(var(--background-start-rgb));
   scroll-behavior: smooth;
 }
+
+// scroll bar
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background-start-rgb));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--foreground-rgb));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--foreground-rgb));
+}

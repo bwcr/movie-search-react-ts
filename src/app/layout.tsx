@@ -3,6 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
+import Providers from "@/utils/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
-        {children}
-        <footer className="px-6 py-4 text-center text-gray-400">
-          <p> &copy; 2023 Movie Search</p>
-        </footer>
+        <Providers>
+          <Navbar />
+          {children}
+          <footer className="px-6 py-4 text-center text-gray-400">
+            <p> &copy; 2023 Movie Search</p>
+          </footer>
+        </Providers>
       </body>
     </html>
   );

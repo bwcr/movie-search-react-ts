@@ -43,10 +43,15 @@ export const getMovieNowPlaying = async () => {
   }
 };
 
-export const searchMovies = async (query: string, page: number = 1) => {
+export const searchMovies = async (
+  query: string,
+  page: number = 1,
+  queries: Object = {}
+) => {
   try {
     const { data } = await axios.get(
-      `${API_URL}/search/movie?api_key=${API}&query=${query}&page=${page}`
+      `${API_URL}/search/movie?api_key=${API}&query=${query}&page=${page}`,
+      { params: queries }
     );
     return Promise.resolve(data);
   } catch (error) {

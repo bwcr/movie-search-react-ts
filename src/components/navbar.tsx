@@ -20,7 +20,11 @@ const Navbar = () => {
       <div className="flex flex-row flex-wrap justify-start w-full gap-4 md:flex-row">
         {/* Logo */}
         <div className="flex flex-row items-center justify-center">
-          <span className="text-xl font-bold text-red-500">M</span>
+          <Link href="/">
+            <span className="text-2xl font-bold text-red-500 cursor-pointer">
+              M
+            </span>
+          </Link>
         </div>
         {/* Links */}
         <div className="flex flex-col items-center justify-center gap-4">

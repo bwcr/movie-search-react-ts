@@ -1,0 +1,17 @@
+module.exports = {
+  presets: ["next/babel"],
+  plugins: [
+    ["styled-components", { ssr: true }],
+    [
+      "module-resolver",
+      {
+        root: ["./"], // root of the project
+        alias: {
+          "@components": "./components",
+          "@services": "./services",
+          "@types": "./types",
+        },
+      },
+    ],
+  ],
+};

@@ -11,18 +11,20 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { ListCredits } from "@/types/credits";
 import CastList from "@/components/movie/cast";
 import MovieList from "@/components/movie/list/list";
-import Video from "@/components/movie/video";
+import Videos from "@/components/movie/video";
 import { getGenres } from "@/services/genre.service";
 import { Genres } from "@/types/genre";
+import { Trailers } from "@/types/video";
 
 const Page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const movie: Movie = await getMovie(id);
+  console.log("🚀 ~ file: page.tsx:22 ~ Page ~ movie:", movie);
   const credits: ListCredits = await getMovieCredits(id);
   const similar: ListMovie = await getSimilarMovies(id);
   const { title, overview, poster_path } = movie;
   const genres: Genres = await getGenres();
-  const video = await getMovieTrailer(id);
+  const videos: Trailers = await getMovieTrailer(id);
 
   return (
     <div className="flex flex-col items-start justify-start w-full min-h-screen gap-6 py-6 md:py-24">
@@ -46,7 +48,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           height={350}
         />
         <div className="flex flex-col items-start justify-start p-6 rounded-md bg-gray-900/50 md:justify-center backdrop-blur-md">
-          {movie.vote_average && (
+          {movie.vote_average > 0 && (
             <div className="flex flex-row flex-wrap items-center justify-center gap-1">
               <StarIcon className="w-6" />
               <div className="p-1 font-bold text-white bg-yellow-500 rounded-full text-md">
@@ -81,37 +83,29 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <p className="max-w-md mt-4 text-sm md:text-md">{overview}</p>
         </div>
       </div>
-      {/* Top Cast */}
-      <div className="w-full h-full">
+      <CastList credits={credits} />
+      {/* Similar Movies */}
+      {similar.results.length > 0 && (
         <div className="block mt-4">
           <div className="px-6 mx-auto md:px-24">
-            <h2 className="text-xl font-bold md:text-2xl">Top Cast</h2>
+            <h2 className="text-xl font-bold md:text-2xl">Similar Movies</h2>
           </div>
           <div className="mt-4">
-            {/* Cast */}
-            <CastList credits={credits} />
+            <MovieList genres={genres} movies={similar} />
           </div>
         </div>
-        {/* Similar Movies */}
-        {similar.results.length > 0 && (
-          <div className="block mt-4">
-            <div className="px-6 mx-auto md:px-24">
-              <h2 className="text-xl font-bold md:text-2xl">Similar Movies</h2>
-            </div>
-            <div className="mt-4">
-              <MovieList genres={genres} movies={similar} />
-            </div>
+      )}
+      {/* Videos */}
+      {videos.results.length > 0 && (
+        <div className="block mt-4">
+          <div className="px-6 mx-auto md:px-24">
+            <h2 className="text-xl font-bold md:text-2xl">Videos</h2>
           </div>
-        )}
-        {movie.video && (
-          <div className="block mt-4">
-            <div className="px-6 mx-auto md:px-24">
-              <h2 className="text-xl font-bold md:text-2xl">Trailer</h2>
-            </div>
-            <Video video={video} />
+          <div className="px-6 mt-4 md:px-24">
+            <Videos videos={videos} />
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
