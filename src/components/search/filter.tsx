@@ -37,7 +37,9 @@ const Filters = () => {
     setFilter(filters);
   }, []);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | any>
+  ) => {
     if (e.target.name === "include_adult") {
       setFilter((prev) => ({ ...prev, include_adult: e.target.checked }));
     } else {
