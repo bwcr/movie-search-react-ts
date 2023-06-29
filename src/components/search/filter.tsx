@@ -1,3 +1,4 @@
+"use client";
 import { getRegions } from "@/services/region.service";
 import { ListRegion, Region } from "@/types/regions";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
