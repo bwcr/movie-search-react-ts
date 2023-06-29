@@ -1,7 +1,6 @@
 import {
   getMovie,
   getMovieCredits,
-  getMovieRecommendations,
   getMovieTrailer,
   getSimilarMovies,
 } from "@/services/movie.service";
@@ -19,7 +18,6 @@ import { Trailers } from "@/types/video";
 const Page = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const movie: Movie = await getMovie(id);
-  console.log("🚀 ~ file: page.tsx:22 ~ Page ~ movie:", movie);
   const credits: ListCredits = await getMovieCredits(id);
   const similar: ListMovie = await getSimilarMovies(id);
   const { title, overview, poster_path } = movie;

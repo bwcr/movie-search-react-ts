@@ -5,10 +5,8 @@ import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import { ListMovie, Movie } from "@/types/movie";
-import Image from "next/legacy/image";
-import Link from "next/link";
 import "../styles.css";
-import { Genre, Genres } from "@/types/genre";
+import { Genres } from "@/types/genre";
 import SingleMovie from "../single/single";
 
 const MovieList = ({
