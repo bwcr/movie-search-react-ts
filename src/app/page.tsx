@@ -1,3 +1,4 @@
+"use server";
 import MovieList from "@/components/movie/list/list";
 import { getGenres } from "@/services/genre.service";
 import {
@@ -7,7 +8,6 @@ import {
   getMovieTopRated,
   getMovieUpcoming,
 } from "@/services/movie.service";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Genres } from "@/types/genre";
 import Search from "@/components/homepage/search";
 
