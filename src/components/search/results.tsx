@@ -6,7 +6,18 @@ import { Genres } from "@/types/genre";
 import { ListMovie } from "@/types/movie";
 import { getGenres } from "@/services/genre.service";
 import { searchMovies } from "@/services/movie.service";
-export async function Results({ params, filter }: any) {
+export const Results = async ({
+  params,
+  filter,
+}: {
+  params: { query: string; page: string };
+  filter: {
+    include_adult: boolean;
+    year: string;
+    region: string;
+    primary_release_year: string;
+  };
+}) => {
   const genres: Genres = await getGenres();
 
   const { query, page } = params;
@@ -52,4 +63,4 @@ export async function Results({ params, filter }: any) {
       )}
     </div>
   );
-}
+};

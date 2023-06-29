@@ -4,11 +4,7 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 import Filters from "@/components/search/filter";
 
-const Page = async ({
-  params,
-}: {
-  params: { query: string; page: string };
-}) => {
+const Page = ({ params }: { params: { query: string; page: string } }) => {
   const search = useSearchParams();
   const filter = {
     include_adult: search.get("include_adult") === "true",
@@ -25,7 +21,8 @@ const Page = async ({
       <div className="flex justify-between px-6 mt-8 md:px-24">
         <Filters />
       </div>
-      <Results filter={filter} params={params} />
+      {/* @ts-expect-error Server Component */}
+      <Results params={params} filter={filter} key={params.query} />
     </>
   );
 };
